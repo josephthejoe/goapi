@@ -24,8 +24,8 @@ func NewDatabase() (*DatabaseInterface, error){
     var database DatabaseInterface = &mockDB{}
 
     var err error = database.SetupDatabase()
-    if err != NIL {
-        log.error(err)
+    if err != nil {
+        log.Error(err)
         return nil, err
     }
 

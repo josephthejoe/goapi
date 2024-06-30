@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/schema"
 )
 
-fucn GetCoinBalance(w http.ResponseWriter, *http.Request) {
+func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
     var params = api.CoinBalanceParams{}
     var decoder *schema.Decoder = schema.NewDecoder()
     var err error
@@ -18,7 +18,7 @@ fucn GetCoinBalance(w http.ResponseWriter, *http.Request) {
     err = decoder.Decode(&params, r.URL.Query())
 
     if err != nil {
-        log.Error(err0
+        log.Error(err)
         api.InternalErrorHandler(w)
         return
     }
@@ -26,7 +26,7 @@ fucn GetCoinBalance(w http.ResponseWriter, *http.Request) {
     var database *tools.DatabaseInterface
     database, err = tools.NewDatabase()
     if err != nil {
-        api.InternalError
+        api.InternalErrorHandler(w)
     }
 
     var tokenDetails *tools.CoinDetails
